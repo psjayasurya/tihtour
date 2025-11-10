@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Project Title</title>
+<meta charset="utf-8">
+<meta name="viewport" content="target-densitydpi=device-dpi, width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, minimal-ui" />
+<style> @-ms-viewport { width: device-width; } </style>
+<link rel="stylesheet" href="static/vendor/reset.min.css">
+<link rel="stylesheet" href="static/style.css">
+
+</head>
+
+<body class="multiple-scenes view-control-buttons">
+
+   <div id="popupOverlay">
+        <div id="popupContent">
+            <h2>IIT Tirupati Navavishkar Innovation Hub</h2>
+            <img src="static/images/hub.jpg" alt="Hub Photo" style="width: 20%; height: 20%;" ><br>
+             <button id="enterTourBtn">Welcome To TIH Virtual Tour</button>
+        </div>
+    </div>
+
+<div id="pano"></div>
+
+
+
+<div id="header">
+    <div class="logo-container">
+        <img src="static/images/hub.jpg" alt="IIT Tirupati Logo">
+        <div>
+            <div class="institute-name">IIT Tirupati Navavishkar I-Hub Foundation</div>
+            <div class="department-name"><marquee  style="color: rgb(61, 247, 5); font-size: medium;"> Developed by Remote Sensing & GIS Lab</marquee></div>
+        </div>
+    </div>
+</div>
+
+<!-- <button slot="hotspot-building1" class="hotspot-button" onclick="window.location.href='http://13.61.169.13:4000'"> IIT Tirupati 3D View</button> -->
+<button id="toggleFloorMap2" onclick="window.location.href='http://13.61.169.13:4000/admin2'">Admin Panel</button>
+<!-- ?? Mute/Unmute Button -->
+<button  id="music-toggle">
+  Unmute Music
+</button>
+<button id="vrbtn" onclick="window.location.href='https://staticfile-7ee16.wasmer.app/'">V R Mode</button>
+
+
+<!-- ?? Background Music -->
+<audio id="bg-music" autoplay loop muted>
+  <source src="static/music/bgm.mpeg" type="audio/mpeg">
+</audio>
+
+
+
+
+
+
+<div id="sceneList">
+  <ul class="scenes">
+    
+      <a href="javascript:void(0)" class="scene" data-id="0-near-lift">
+        <li class="text">Lift Lobby</li>
+      </a>
+      <a href="javascript:void(0)" class="scene" data-id="1-entrance">
+        <li class="text">Main Entrance </li>
+      </a>
+
+            <a href="javascript:void(0)" class="scene" data-id="0-meeting-room">
+        <li class="text">Conference Room</li>
+      </a>
+    
+    
+      <a href="javascript:void(0)" class="scene" data-id="2-near-cafteria">
+        <li class="text">Cafeteria Access</li>
+      </a>
+    
+      <a href="javascript:void(0)" class="scene" data-id="3-ceo-room">
+        <li class="text">Near CEO Room</li>
+      </a>
+    
+      <a href="javascript:void(0)" class="scene" data-id="4-gnss-3">
+        <li class="text">GNSS Lab </li>
+      </a>
+        <a href="javascript:void(0)" class="scene" data-id="0-cv-lab">
+        <li class="text">Computer Vision Lab</li>
+      </a>
+      <a href="javascript:void(0)" class="scene" data-id="10-gis-lab">
+        <li class="text">GIS Lab</li>
+      </a>
+      <a href="javascript:void(0)" class="scene" data-id="0-geo-intel">
+        <li class="text">Geo - Intel Lab</li>
+      </a>
+      <a href="javascript:void(0)" class="scene" data-id="0-geo-intel-2">
+        <li class="text">Geo - Intel Lab2</li>
+      </a>
+
+
+
+
+    
+      <a href="javascript:void(0)" class="scene" data-id="5-computational-lab-outside">
+        <li class="text">Computational Lab Outside</li>
+      </a>
+    
+      <a href="javascript:void(0)" class="scene" data-id="6-near-coffee-machine">
+        <li class="text">Near Coffee Machine</li>
+      </a>
+    
+      <a href="javascript:void(0)" class="scene" data-id="7-near-project-director-room">
+        <li class="text">Directorâ€™s Office Corridor</li>
+      </a>
+    
+      <a href="javascript:void(0)" class="scene" data-id="8-labs-outside">
+        <li class="text">Research Labs (Exterior)</li>
+      </a>
+    
+      <a href="javascript:void(0)" class="scene" data-id="9-near-advisory-room">
+        <li class="text">Advisory Room Corridor</li>
+      </a>
+    
+      <a href="javascript:void(0)" class="scene" data-id="11-gym-outside">
+        <li class="text">Gym Corridor</li>
+      </a>
+    
+      <a href="javascript:void(0)" class="scene" data-id="12-gym">
+        <li class="text">GYM</li>
+      </a>
+    
+      <a href="javascript:void(0)" class="scene" data-id="13-gnss-2">
+        <li class="text">GNSS Lab2</li>
+      </a>
+            <a href="javascript:void(0)" class="scene" data-id="1-geo-intel-21">
+        <li class="text">Geo - Intel 2.1</li>
+      </a>
+    
+  </ul>
+</div>
+
+<div id="titleBar">
+  <h1 class="sceneName"></h1>
+</div>
+
+<a href="javascript:void(0)" id="autorotateToggle">
+  <img class="icon off" src="static/images/img/play.png">
+  <img class="icon on" src="static/images/img/pause.png">
+</a>
+
+<a href="javascript:void(0)" id="fullscreenToggle">
+  <img class="icon off" src="static/images/img/fullscreen.png">
+  <img class="icon on" src="static/images/img/windowed.png">
+</a>
+
+<a href="javascript:void(0)" id="sceneListToggle">
+  <img class="icon off" src="static/images/img/expand.png">
+  <img class="icon on" src="static/images/img/collapse.png">
+</a>
+
+<a href="javascript:void(0)" id="viewUp" class="viewControlButton viewControlButton-1"><img class="icon" src="static/images/img/up.png"></a>
+<a href="javascript:void(0)" id="viewDown" class="viewControlButton viewControlButton-2"><img class="icon" src="static/images/img/down.png"></a>
+<a href="javascript:void(0)" id="viewLeft" class="viewControlButton viewControlButton-3"><img class="icon" src="static/images/img/left.png"></a>
+<a href="javascript:void(0)" id="viewRight" class="viewControlButton viewControlButton-4"><img class="icon" src="static/images/img/right.png"></a>
+<a href="javascript:void(0)" id="viewIn" class="viewControlButton viewControlButton-5"><img class="icon" src="static/images/img/plus.png"></a>
+<a href="javascript:void(0)" id="viewOut" class="viewControlButton viewControlButton-6"><img class="icon" src="static/images/img/minus.png"></a>
+
+<script src="static/vendor/screenfull.min.js" ></script>
+<script src="static/vendor/bowser.min.js" ></script>
+<script src="static/vendor/marzipano.js" ></script>
+<script src="http://13.61.169.13:4000/dataserver/data.js"></script>
+<script src="static/index.js"></script>
+
+<script>
+  document.getElementById("enterTourBtn").addEventListener("click", function() {
+    document.getElementById("popupOverlay").style.display = "none";
+  });
+</script>
+
+<!-- Ã°Å¸â€
